@@ -11,9 +11,9 @@ public class InvoiceService
         _emailService = new EmailService();
     }
 
-    public void ProcessInvoice(Invoice invoice)
+    public void SendInvoice(Invoice invoice)
     {
-        Console.WriteLine($"{invoice} is processing ...");
+        Console.WriteLine($"{invoice} is sending ...");
 
         _emailService.SendEmail(invoice);
     }

@@ -12,9 +12,9 @@ public class InvoiceService : IInvoiceService
         _emailService = emailService;
     }
 
-    public void ProcessInvoice(Invoice invoice)
+    public void SendInvoice(Invoice invoice)
     {
-        Console.WriteLine($"{invoice} is processing ...");
+        Console.WriteLine($"{invoice} is sending ...");
 
         _emailService.SendEmail(invoice);
     }

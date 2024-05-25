@@ -2,24 +2,23 @@
 using DIExample.Models;
 using DIExample.Services;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 namespace DIExample;
 
 internal static class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
-        var host = Host.CreateDefaultBuilder(args)
-            .ConfigureServices(services =>
-            {
-                services.AddTransient<IInvoiceService, InvoiceService>();
-                services.AddTransient<IEmailService, EmailService>();
-            })
-            .Build();
+        // register the services
+        var services = new ServiceCollection();
+        services.AddTransient<IInvoiceService, InvoiceService>();
+        services.AddTransient<IEmailService, EmailService>();
+
+        // build the service provider
+        var sp = services.BuildServiceProvider();
 
         var invoice = new Invoice(1, 100.5);
-        var invoiceService = host.Services.GetRequiredService<IInvoiceService>();
-        invoiceService.ProcessInvoice(invoice);
+        var invoiceService = sp.GetRequiredService<IInvoiceService>();
+        invoiceService.SendInvoice(invoice);
     }
 }

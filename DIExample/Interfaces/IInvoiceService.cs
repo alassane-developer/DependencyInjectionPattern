@@ -4,5 +4,5 @@ namespace DIExample.Interfaces;
 
 public interface IInvoiceService
 {
-    void ProcessInvoice(Invoice invoice);
+    void SendInvoice(Invoice invoice);
 }
